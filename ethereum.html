@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" >
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <link rel="stylesheet" href="style.css">
+    <title>CriptoMoeda</title>
+</head>
+<body>
+	<div class="cento-header">
+		<div class="container">
+		  <div class="logo">
+		  <a  class="Logoletter" href="index.html"><img class="imglogo" src="cripto.png" alt="criptomoeda"></a>
+  		</div>
+		</div>
+		<div class="nav-wrap">
+		  <div class="container">
+			<div class="row">
+				<ul class="wsite-menu-default">
+                      <a href="index.html" class="LastItem" style="position: relative;">Home</a>
+                      <a href="bitcoin.html" class="LastItem" style="position: relative;">BitCoin</a>
+                      <a href="ethereum.html" class="LastItem" style="position: relative;">Ethereum</a>
+                      <a href="ethereum.html" class="LastItem" style="position: relative;">LiteCoin</a>
+                      <a href="ethereum.html" class="LastItem" style="position: relative;">NxT</a>
+  				</ul>
+  			</div>
+		  </div>
+		</div>
+	  </div>
+    <div class="container">
+            <div class="col-lg-11 col-centered">
+               <h1 style="text-align:left; margin-top:20px; margin-bottom:20px;">Ethereum</h1>
+            <p style="font-size:12px;">Ethereum é uma plataforma descentralizada capaz de executar contratos inteligentes e aplicações descentralizadas usando a tecnologia blockchain: São aplicações que funcionam exatamente como programadas sem qualquer possibilidade de censura, fraude ou interferência de terceiros, isso porque o contrato é imutável. Ele possui uma máquina virtual descentralizada Turing completude, a Ethereum Virtual Machine (EVM), que pode executar scripts usando uma rede internacional de nós públicos.
+                    O Ethereum foi fundado por Vitalik Buterin em Janeiro de 2014, e formalmente apresentado para a comunidade na forma de um white paper[2] . A definição formal da Virtual Machine do Ethereum ( EVM ) foi escrito por Gavin Wood.
+                    O Ethereum foi financiado como um projeto de crowdfunding, sendo o terceiro maior projeto já financiado desta forma na história, e foi lançado em 30 de Julho de 2015[
+                    Em 2016 ocorreu um fork no Ethereum e seu blockchain foi dividido em dois graças ao colapso do projeto The DAO, e com isso nasceu o Ethereum Classic.</p>
+            <br>
+            <br>
+            <br>
+           <canvas id="canvas" width="1068" height="534" class="chartjs-render-monitor" style="display: block; width: 1068px; height: 534px;"></canvas> 
+        </div>
+            
+            
+            
+            
+</body>
+<script>
+  var MONTHS = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outobro", "Novembro", "Dezembro"];
+  var config = {
+      type: 'line',
+      data: {
+          labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outobro", "Novembro", "Dezembro"],
+          datasets: [{
+              label: "Valor monetario por cada mês",
+              backgroundColor: window.chartColors.blue,
+              borderColor: window.chartColors.blue,
+              data: [
+              400,372,543,650,800,1000,1500,2200,3300,5000,6000,9000
+              ],
+              fill: false,
+          }]
+      },
+      options: {
+          responsive: true,
+          title:{
+              display:true,
+              text:'Valor em euros no Ano 2017(Ethereum)'
+          },
+          tooltips: {
+              mode: 'index',
+              intersect: false,
+          },
+          hover: {
+              mode: 'nearest',
+              intersect: true
+          },
+          scales: {
+              xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Mês'
+                  }
+              }],
+              yAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Valor em €'
+                  }
+              }]
+          }
+      }
+  };
+
+  window.onload = function() {
+      var ctx = document.getElementById("canvas").getContext("2d");
+      window.myLine = new Chart(ctx, config);
+  };
+
+  document.getElementById('randomizeData').addEventListener('click', function() {
+      config.data.datasets.forEach(function(dataset) {
+          dataset.data = dataset.data.map(function() {
+              return randomScalingFactor();
+          });
+
+      });
+
+      window.myLine.update();
+  });
+
+  var colorNames = Object.keys(window.chartColors);
+  document.getElementById('addDataset').addEventListener('click', function() {
+      var colorName = colorNames[config.data.datasets.length % colorNames.length];
+      var newColor = window.chartColors[colorName];
+      var newDataset = {
+          label: 'Dataset ' + config.data.datasets.length,
+          backgroundColor: newColor,
+          borderColor: newColor,
+          data: [],
+          fill: false
+      };
+
+      for (var index = 0; index < config.data.labels.length; ++index) {
+          newDataset.data.push(randomScalingFactor());
+      }
+
+      config.data.datasets.push(newDataset);
+      window.myLine.update();
+  });
+
+  document.getElementById('addData').addEventListener('click', function() {
+      if (config.data.datasets.length > 0) {
+          var month = MONTHS[config.data.labels.length % MONTHS.length];
+          config.data.labels.push(month);
+
+          config.data.datasets.forEach(function(dataset) {
+              dataset.data.push(randomScalingFactor());
+          });
+
+          window.myLine.update();
+      }
+  });
+</script>
+</html>
