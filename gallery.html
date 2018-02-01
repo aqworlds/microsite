@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" >
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+	<link rel="stylesheet" href="style.css">
+	<title>CriptoMoeda</title>
+</head>
+<body>
+	<div class="cento-header">
+		<div class="container">
+		  <div class="logo">
+		  <a  class="Logoletter" href="index.html"><img class="imglogo" src="cripto.png" alt="criptomoeda"></a>
+  		</div>
+		</div>
+		<div class="nav-wrap">
+		  <div class="container">
+			<div class="row">
+				<ul class="wsite-menu-default">
+			  		<a href="index.html" class="LastItem" style="position: relative;">Home</a>
+			  		<a href="bitcoin.html" class="LastItem" style="position: relative;">BitCoin</a>
+					<a href="ethereum.html" class="LastItem" style="position: relative;">Ethereum</a>
+					<a href="litecoin.html" class="LastItem" style="position: relative;">LiteCoin</a>
+					<a href="nxt.html" class="LastItem" style="position: relative;">NxT</a>
+					<a href="gallery.html" class="LastItem" style="position: relative;">Galeria</a>
+  				</ul>
+  			</div>
+		  </div>
+		</div>
+	  </div>
+	  <div class="container">
+			<div class="col-lg-11 col-centered">
+		  		
+<h2 style="text-align:center">Galeria</h2>
+
+<div class="row">
+  <div class="column">
+    <img src="criptomoedas.jpg" style="width:100%; height:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="btc1.jpg" style="width:100%; height:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="btc.jpg" style="width:100%; height:100%" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="lt1.jpg" style="width:100%;height:100%" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="eth1.png" style="width:100%;height:100%" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+  </div>
+  <div class="column">
+    <img src="cript.jpg" style="width:100%;height:100%" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+  </div>
+</div>
+  
+</div>
+</div>
+
+<div id="myModal" class="modal">
+  <span class="close cursor" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+
+    <div class="mySlides">
+      <div class="numbertext">1 / 6</div>
+      <img src="criptomoeda.jpg" style="width:100%;">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">2 / 6</div>
+      <img src="btc1.jpg" style="width:100%">
+    </div>
+
+    <div class="mySlides">
+      <div class="numbertext">3 / 6</div>
+      <img src="lt1.jpg" style="width:100%">
+    </div>
+    
+    <div class="mySlides">
+      <div class="numbertext">4 / 6</div>
+      <img src="eth1.png" style="width:100%">
+    </div>
+    <div class="mySlides">
+        <div class="numbertext">5 / 6</div>
+        <img src="cript.jpg" style="width:100%">
+      </div>
+  
+      <div class="mySlides">
+        <div class="numbertext">6 / 6</div>
+        <img src="cript.jpg" style="width:100%">
+      </div>
+  
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+    <div class="caption-container">
+      <p id="caption"></p>
+    </div>
+  </div>
+</div>
+</div>		
+		<br>
+		<br>
+</body>
+<footer style="background-color:#ffc300;">
+		<div class="container">
+		<a href="Facebook.com"><img class="footericon" src="faceicon.png" alt="facebook"></a>
+		<a href="instagram.com"><img class="footericon" src="instaicon.png" alt="instagram"></a>
+		<a href="twitter.com"><img class="footericon" src="twitter.png" alt="twitter"></a>
+	</div>
+	<p style="font-size: 12px; text-align:center; margin-top:10px;">Proudly powered by <a href="#" style="font-size:15px; text-decoration:none; font-weight:bold; color:black; opacity:0.6">Daniel Carvalho</a></p>
+</footer>
+</html>
+<script>
+    function openModal() {
+      document.getElementById('myModal').style.display = "block";
+    }
+    
+    function closeModal() {
+      document.getElementById('myModal').style.display = "none";
+    }
+    
+    var slideIndex = 1;
+    showSlides(slideIndex);
+    
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+    
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+    
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("demo");
+      var captionText = document.getElementById("caption");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      captionText.innerHTML = dots[slideIndex-1].alt;
+    }
+    </script>
+        
